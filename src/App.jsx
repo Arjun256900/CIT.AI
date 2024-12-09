@@ -7,7 +7,7 @@ import {
   Navigate,
 } from "react-router-dom";
 import { useState } from "react";
-import MediaCard from "./components/DepartmentSelect.jsx";
+import DepartmentSelect from "./components/DepartmentSelect.jsx";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -24,7 +24,9 @@ function App() {
 
         <Route
           path="/select-department"
-          element={isLoggedIn ? <MediaCard /> : <Navigate to="/" replace />}
+          element={
+            isLoggedIn ? <DepartmentSelect /> : <Navigate to="/" replace />
+          }
         />
         <Route path="/dashboard" element={<DashBoard />} />
       </Routes>

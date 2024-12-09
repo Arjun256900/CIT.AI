@@ -42,6 +42,23 @@ function DashboardLayoutBranding(props) {
   const demoWindow = window !== undefined ? window() : undefined;
 
   const [selectedSegment, setSelectedSegment] = React.useState("sem1");
+  const [semesterData, setSemesterData] = React.useState({
+    sem1: [],
+    sem2: [],
+    sem3: [],
+    sem4: [],
+    sem5: [],
+    sem6: [],
+    sem7: [],
+    sem8: [],
+  });
+
+  const handleSemesterDetailsChange = (semester, data) => {
+    setSemesterData((prevData) => ({
+      ...prevData,
+      [semester]: data,
+    }));
+  };
 
   return (
     <AppProvider
@@ -62,10 +79,9 @@ function DashboardLayoutBranding(props) {
             height: "100vh",
           }}
         >
-          {/* Left Sidebar - Semester Navigation Box */}
           <Box
             sx={{
-              width: "250px", // Set a fixed width for the left sidebar
+              width: "250px",
               backgroundColor: "rgba(0, 0, 0, 0.85)",
               display: "flex",
               flexDirection: "column",
@@ -106,18 +122,21 @@ function DashboardLayoutBranding(props) {
             ))}
           </Box>
 
-          {/* Right Content - Semester Details Box */}
           <Box
             sx={{
-              flex: 1, // This makes the content take the remaining space
+              flex: 1,
               py: 4,
               display: "flex",
               flexDirection: "column",
-              marginLeft: "16px", // Space between the navigation and content
+              marginLeft: "16px",
             }}
           >
             <Typography variant="h4"></Typography>
-            <SemesterDetails semester={selectedSegment} />
+            <SemesterDetails
+              semester={selectedSegment}
+              data={semesterData[selectedSegment]}
+              onChange={handleSemesterDetailsChange}
+            />
           </Box>
         </Box>
       </DashboardLayout>
