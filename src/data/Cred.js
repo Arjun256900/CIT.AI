@@ -1,4 +1,4 @@
-// Predefined array of credentials (with 13 users)
+// Predefined array of credentials (with 14 users)
 const credentials = [
   { email: "DEPT-OF-CSE--@HOD", password: "cit.--@HOD_CSE" },
   { email: "DEPT-OF-IT--@HOD", password: "cit.--@HOD_IT" },
