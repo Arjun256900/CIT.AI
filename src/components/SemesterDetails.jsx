@@ -1,199 +1,67 @@
-import React, { useState, useEffect } from "react";
-import Button from "@mui/material/Button";
+import React from "react";
 import "./SemesterDetails.css";
 
-const SemesterDetails = ({ semester, data, onChange }) => {
-  const [courses, setCourses] = useState(data);
-
-  useEffect(() => {
-    setCourses(data);
-  }, [data]);
-
-  const addCourse = () => {
-    setCourses([
-      ...courses,
-      {
-        id: courses.length + 1,
-        regulationId: "",
-        regulationName: "",
-        startYear: "",
-        endYear: "",
-        curriculumId: "",
-        curriculumName: "",
-        department: "",
-        totalCredits: "",
-        durationYears: "",
-        categoryId: "",
-        categoryName: "",
-        creditCount: "",
-        courseId: "",
-        courseCode: "",
-        courseName: "",
-        semester: "",
-        credits: "",
-        ltp: "",
-      },
-    ]);
-  };
-
-  const handleInputChange = (e, courseId) => {
-    const { name, value } = e.target;
-    setCourses((prevCourses) =>
-      prevCourses.map((course) =>
-        course.id === courseId ? { ...course, [name]: value } : course
-      )
-    );
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const hasEmptyFields = courses.some((course) =>
-      Object.values(course).some((value) => value === "")
-    );
-    if (hasEmptyFields) {
-      alert("Please fill in all fields before submitting.");
-      return;
-    }
-    onChange(semester, courses);
-  };
-
+const SemesterDetails = () => {
   return (
-    <div className="semester-details-container">
-      <h2>Semester Details</h2>
-      <form onSubmit={handleSubmit}>
-        {courses.map((course) => (
-          <div key={course.id} className="course-container">
-            <h3 id="course-h3">Course {course.id}</h3>
-            {/* Row 1 */}
-            <div className="row">
-              <div className="input-group">
-                <label>Regulation Id</label>
-                <input
-                  type="number"
-                  placeholder="Regulation Id"
-                  name="regulationId"
-                  value={course.regulationId || ""}
-                  onChange={(e) => handleInputChange(e, course.id)}
-                />
-              </div>
-              <div className="input-group">
-                <label>Regulation Name</label>
-                <input
-                  type="text"
-                  placeholder="Regulation Name"
-                  name="regulationName"
-                  value={course.regulationName || ""}
-                  onChange={(e) => handleInputChange(e, course.id)}
-                />
-              </div>
-              <div className="input-group">
-                <label>Start Year</label>
-                <input
-                  type="number"
-                  placeholder="Start year"
-                  name="startYear"
-                  value={course.startYear || ""}
-                  onChange={(e) => handleInputChange(e, course.id)}
-                />
-              </div>
-              <div className="input-group">
-                <label>End Year</label>
-                <input
-                  type="number"
-                  placeholder="End year"
-                  name="endYear"
-                  value={course.endYear || ""}
-                  onChange={(e) => handleInputChange(e, course.id)}
-                />
-              </div>
-            </div>
-            {/* Row 4 */}
-            <div className="row">
-              <div className="input-group">
-                <label>Course Id</label>
-                <input
-                  type="number"
-                  placeholder="Course Id"
-                  name="courseId"
-                  value={course.courseId || ""}
-                  onChange={(e) => handleInputChange(e, course.id)}
-                />
-              </div>
-              <div className="input-group">
-                <label>Course Code</label>
-                <input
-                  type="text"
-                  placeholder="Course Code"
-                  name="courseCode"
-                  value={course.courseCode || ""}
-                  onChange={(e) => handleInputChange(e, course.id)}
-                />
-              </div>
-              <div className="input-group">
-                <label>Course Name</label>
-                <input
-                  type="text"
-                  placeholder="Course Name"
-                  name="courseName"
-                  value={course.courseName || ""}
-                  onChange={(e) => handleInputChange(e, course.id)}
-                />
-              </div>
-              <div className="input-group">
-                <label>Category Id</label>
-                <input
-                  type="number"
-                  placeholder="Category Id"
-                  name="categoryId"
-                  value={course.categoryId || ""}
-                  onChange={(e) => handleInputChange(e, course.id)}
-                />
-              </div>
-            </div>
-            {/* Row 5 */}
-            <div className="row">
-              <div className="input-group">
-                <label>Semester</label>
-                <input
-                  type="number"
-                  placeholder="Semester"
-                  name="semester"
-                  value={course.semester || ""}
-                  onChange={(e) => handleInputChange(e, course.id)}
-                />
-              </div>
-              <div className="input-group">
-                <label>Credits</label>
-                <input
-                  type="number"
-                  placeholder="Credits"
-                  name="credits"
-                  value={course.credits || ""}
-                  onChange={(e) => handleInputChange(e, course.id)}
-                />
-              </div>
-              <div className="input-group">
-                <label>LTP</label>
-                <input
-                  type="text"
-                  placeholder="LTP"
-                  name="ltp"
-                  value={course.ltp || ""}
-                  onChange={(e) => handleInputChange(e, course.id)}
-                />
-              </div>
-            </div>
+    <div className="semester-container">
+      <h1 className="header-semester">Semester Details</h1>
+      <div className="form-container">
+        <h2 className="course-header">Course 1</h2>
+        <form className="form-grid">
+          <div className="form-group">
+            <label htmlFor="regulation-id">Regulation Id</label>
+            <input id="regulation-id" type="text" placeholder="Regulation Id" />
           </div>
-        ))}
-        <div className="action-buttons">
-          <Button variant="outlined" onClick={addCourse}>
-            Add Course
-          </Button>
-          <Button variant="contained" color="success" type="submit">
-            Submit
-          </Button>
+          <div className="form-group">
+            <label htmlFor="regulation-name">Regulation Name</label>
+            <input
+              id="regulation-name"
+              type="text"
+              placeholder="Regulation Name"
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="start-year">Start Year</label>
+            <input id="start-year" type="text" placeholder="Start year" />
+          </div>
+          <div className="form-group">
+            <label htmlFor="end-year">End Year</label>
+            <input id="end-year" type="text" placeholder="End year" />
+          </div>
+          <div className="form-group">
+            <label htmlFor="credit-count">Credit Count</label>
+            <input id="credit-count" type="number" placeholder="Credit Count" />
+          </div>
+          <div className="form-group">
+            <label htmlFor="course-id">Course Id</label>
+            <input id="course-id" type="number" placeholder="Course Id" />
+          </div>
+          <div className="form-group">
+            <label htmlFor="course-code">Course Code</label>
+            <input id="course-code" type="text" placeholder="Course Code" />
+          </div>
+          <div className="form-group">
+            <label htmlFor="course-name">Course Name</label>
+            <input id="course-name" type="text" placeholder="Course Name" />
+          </div>
+          <div className="form-group">
+            <label htmlFor="semester">Semester</label>
+            <input id="semester" type="number" placeholder="Semester" />
+          </div>
+          <div className="form-group">
+            <label htmlFor="credits">Credits</label>
+            <input id="credits" type="number" placeholder="Credits" />
+          </div>
+          <div className="form-group">
+            <label htmlFor="ltp">LTP</label>
+            <input id="ltp" type="number" placeholder="LTP" />
+          </div>
+        </form>
+        <div className="button-container">
+          <button className="add-course">Add Course</button>
+          <button className="submit">Submit</button>
         </div>
-      </form>
+      </div>
     </div>
   );
 };
